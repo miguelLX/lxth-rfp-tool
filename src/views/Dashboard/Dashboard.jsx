@@ -32,11 +32,7 @@ import CardFooter from "components/Card/CardFooter.jsx";
 
 import { bugs, website, server } from "variables/general.jsx";
 
-import {
-  dailySalesChart,
-  emailsSubscriptionChart,
-  completedTasksChart
-} from "variables/charts.jsx";
+import { dailySalesChart, emailsSubscriptionChart, completedTasksChart } from "variables/charts.jsx";
 
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 
@@ -173,9 +169,7 @@ class Dashboard extends React.Component {
               </CardHeader>
               <CardBody>
                 <h4 className={classes.cardTitle}>Email Subscriptions</h4>
-                <p className={classes.cardCategory}>
-                  Last Campaign Performance
-                </p>
+                <p className={classes.cardCategory}>Last Campaign Performance</p>
               </CardBody>
               <CardFooter chart>
                 <div className={classes.stats}>
@@ -197,9 +191,7 @@ class Dashboard extends React.Component {
               </CardHeader>
               <CardBody>
                 <h4 className={classes.cardTitle}>Completed Tasks</h4>
-                <p className={classes.cardCategory}>
-                  Last Campaign Performance
-                </p>
+                <p className={classes.cardCategory}>Last Campaign Performance</p>
               </CardBody>
               <CardFooter chart>
                 <div className={classes.stats}>
@@ -218,35 +210,17 @@ class Dashboard extends React.Component {
                 {
                   tabName: "Bugs",
                   tabIcon: BugReport,
-                  tabContent: (
-                    <Tasks
-                      checkedIndexes={[0, 3]}
-                      tasksIndexes={[0, 1, 2, 3]}
-                      tasks={bugs}
-                    />
-                  )
+                  tabContent: <Tasks checkedIndexes={[0, 3]} tasksIndexes={[0, 1, 2, 3]} tasks={bugs} />
                 },
                 {
                   tabName: "Website",
                   tabIcon: Code,
-                  tabContent: (
-                    <Tasks
-                      checkedIndexes={[0]}
-                      tasksIndexes={[0, 1]}
-                      tasks={website}
-                    />
-                  )
+                  tabContent: <Tasks checkedIndexes={[0]} tasksIndexes={[0, 1]} tasks={website} />
                 },
                 {
                   tabName: "Server",
                   tabIcon: Cloud,
-                  tabContent: (
-                    <Tasks
-                      checkedIndexes={[1]}
-                      tasksIndexes={[0, 1, 2]}
-                      tasks={server}
-                    />
-                  )
+                  tabContent: <Tasks checkedIndexes={[1]} tasksIndexes={[0, 1, 2]} tasks={server} />
                 }
               ]}
             />
@@ -255,9 +229,7 @@ class Dashboard extends React.Component {
             <Card>
               <CardHeader color="warning">
                 <h4 className={classes.cardTitleWhite}>Employees Stats</h4>
-                <p className={classes.cardCategoryWhite}>
-                  New employees on 15th September, 2016
-                </p>
+                <p className={classes.cardCategoryWhite}>New employees on 15th September, 2016</p>
               </CardHeader>
               <CardBody>
                 <Table
