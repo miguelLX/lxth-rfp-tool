@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // @material-ui/core components
 import Avatar from "@material-ui/core/Avatar";
 // import Button from "@material-ui/core/Button";
+import GridItem from "components/Grid/GridItem.jsx";
+import GridContainer from "components/Grid/GridContainer.jsx";
+import Snackbar from "components/Snackbar/Snackbar.jsx";
+
 import CssBaseline from "@material-ui/core/CssBaseline";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -28,8 +32,40 @@ function SignIn(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  useEffect(() => {
+    document.title = `You clicked ${showSnackbar} `;
+    let timer1 = setTimeout(() => setShowSnackbar(false), 5000);
+    return () => {
+      clearTimeout(timer1);
+    };
+  }, [showSnackbar]); // Only re-run the effect if showSnackbar changes
+
   return (
     <main className={classes.main}>
+      <GridContainer justify="center">
+        <GridItem xs={12} sm={12} md={10} lg={8}>
+          <GridContainer>
+            <GridItem xs={12} sm={12} md={4}>
+              <div />{" "}
+            </GridItem>
+            <GridItem xs={12} sm={12} md={4}>
+              <Snackbar
+                place="tc"
+                color="danger"
+                message="Welcome to MATERIAL DASHBOARD React - a beautiful freebie for every web developer."
+                closeNotification={() => setShowSnackbar(false)}
+                open={showSnackbar}
+                close
+              />
+            </GridItem>
+            <GridItem xs={12} sm={12} md={4}>
+              <div />{" "}
+            </GridItem>
+          </GridContainer>
+        </GridItem>
+      </GridContainer>
+
       <CssBaseline />
       <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -82,9 +118,12 @@ function SignIn(props) {
   function handleLogin() {
     try {
       login(email, password, props.history, dispatch);
+      setShowSnackbar(true);
     } catch (error) {
+      setShowSnackbar(true);
       alert(error.message);
     }
   }
 }
+
 export default withStyles(styles)(SignIn);

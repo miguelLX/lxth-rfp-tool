@@ -11,6 +11,7 @@ import DashboardPage from "views/Dashboard/Dashboard.jsx";
 import UserProfile from "views/UserProfile/UserProfile.jsx";
 import TableList from "views/TableList/TableList.jsx";
 import Typography from "views/Typography/Typography.jsx";
+import RFPs from "views/RFPs/RFPs.jsx";
 import Icons from "views/Icons/Icons.jsx";
 import Maps from "views/Maps/Maps.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
@@ -45,6 +46,13 @@ export const authRoutes = [
 ];
 
 export const dashboardRoutes = [
+  {
+    path: "/RFPs",
+    name: "RFPs",
+    icon: Dashboard,
+    component: RFPs,
+    layout: "/admin"
+  },
   {
     path: "/dashboard",
     name: "Dashboard",
