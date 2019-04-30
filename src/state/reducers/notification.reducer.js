@@ -1,6 +1,6 @@
 import constants from "../constants";
 
-export function alertReducer(state = {}, action) {
+export function notificationReducer(state = {}, action) {
   switch (action.type) {
     case constants.ALERT_SUCCESS:
       // eslint-disable-next-line prettier/prettier

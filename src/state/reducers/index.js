@@ -1,2 +1,2 @@
-export * from "./alert.reducer";
+export * from "./notification.reducer";
 export * from "./authentication.reducer";

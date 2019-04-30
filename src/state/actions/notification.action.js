@@ -1,5 +1,5 @@
 import constants from "../constants";
-import { alertReducer as reducer } from "../reducers";
+import { notificationReducer as reducer } from "../reducers";
 
 export const notifications = {
   success,

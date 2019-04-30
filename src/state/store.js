@@ -24,5 +24,6 @@ function reducer(state, action) {
 export function StoreProvider(props) {
   const [state, dispatch] = React.useReducer(reducer, initialState);
   const value = { state, dispatch };
+  // eslint-disable-next-line react/prop-types
   return <Store.Provider value={value}>{props.children}</Store.Provider>;
 }
