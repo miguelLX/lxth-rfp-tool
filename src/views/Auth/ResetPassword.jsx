@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 // @material-ui/core components
 import Avatar from "@material-ui/core/Avatar";

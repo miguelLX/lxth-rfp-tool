@@ -1,6 +1,9 @@
+// react components
 import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
+
+// custom components
 import { createBrowserHistory } from "history";
 import { StoreProvider } from "./state/store";
 

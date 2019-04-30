@@ -2,11 +2,6 @@ import React, { useState, useEffect } from "react";
 
 // @material-ui/core components
 import Avatar from "@material-ui/core/Avatar";
-// import Button from "@material-ui/core/Button";
-import GridItem from "components/Grid/GridItem.jsx";
-import GridContainer from "components/Grid/GridContainer.jsx";
-import Snackbar from "components/Snackbar/Snackbar.jsx";
-
 import CssBaseline from "@material-ui/core/CssBaseline";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -17,24 +12,34 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
+
 import Button from "components/CustomButtons/Button.jsx";
+import GridContainer from "components/Grid/GridContainer.jsx";
+import GridItem from "components/Grid/GridItem.jsx";
+import Snackbar from "components/Snackbar/Snackbar.jsx";
 
 import styles from "assets/jss/material-dashboard-react/layouts/authStyle.jsx";
 
 import { Store } from "../../state/store";
-import { login } from "../../state/actions";
+import { login, notifications } from "../../state/actions";
 /* eslint-disable */
 
 function SignIn(props) {
   const { classes } = props;
 
   const { state, dispatch } = React.useContext(Store);
+  const [showSnackbar, setShowSnackbar] = useState(false);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [showSnackbar, setShowSnackbar] = useState(false);
   useEffect(() => {
-    document.title = `You clicked ${showSnackbar} `;
+    if (state.alert.message != null) {
+      setShowSnackbar(true);
+    }
+  }, [state.alert]);
+
+  useEffect(() => {
     let timer1 = setTimeout(() => setShowSnackbar(false), 5000);
     return () => {
       clearTimeout(timer1);
@@ -53,7 +58,7 @@ function SignIn(props) {
               <Snackbar
                 place="tc"
                 color="danger"
-                message="Welcome to MATERIAL DASHBOARD React - a beautiful freebie for every web developer."
+                message={state.alert.message != null ? state.alert.message : ""}
                 closeNotification={() => setShowSnackbar(false)}
                 open={showSnackbar}
                 close
@@ -118,10 +123,8 @@ function SignIn(props) {
   function handleLogin() {
     try {
       login(email, password, props.history, dispatch);
-      setShowSnackbar(true);
     } catch (error) {
-      setShowSnackbar(true);
-      alert(error.message);
+      notifications.error(error.message);
     }
   }
 }

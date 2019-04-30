@@ -1,23 +1,33 @@
 import constants from "../constants";
+import { notifications } from "./";
 import { authenticationService } from "../services";
 import { authenticationReducer } from "../reducers";
 
-export const login = async (email, password, history, dispatch) => {
-  const user = authenticationService.login(email, password);
-  authenticationService.login(email, password).then(
+export const login = async (username, password, history, dispatch) => {
+  dispatch(request(username));
+
+  authenticationService.login(username, password).then(
     user => {
+      dispatch(success(user));
       history.push("/");
-      return dispatch({
-        type: constants.LOGIN_REQUEST,
-        reducer: authenticationReducer,
-        payload: user
-      });
     },
     error => {
-      return dispatch({
-        type: constants.LOGIN_FAILURE,
-        payload: null
-      });
+      dispatch(failure(error.toString()));
+      dispatch(notifications.error(error.toString()));
     }
   );
+
+  function success(user) {
+    // eslint-disable-next-line prettier/prettier
+    return { type: constants.LOGIN_REQUEST, reducer: authenticationReducer, payload: user };
+  }
+
+  function failure(error) {
+    // eslint-disable-next-line prettier/prettier
+    return { type: constants.LOGIN_FAILURE, reducer: authenticationReducer, payload: error };
+  }
+
+  function request(user) {
+    return { type: constants.LOGIN_REQUEST, user };
+  }
 };

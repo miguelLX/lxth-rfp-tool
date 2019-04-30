@@ -1,19 +1,17 @@
 import React from "react";
-import constants from "./constants";
-
-import { authenticationReducer } from "./reducers";
 
 export const Store = React.createContext("");
 
 const initialState = {
-  user: null,
-  episodes: [],
-  favourites: [],
-  count: 0
+  alert: {
+    type: null,
+    message: null
+  },
+  user: null
 };
 
 function reducer(state, action) {
-  if (action.reducer !== "undefined" && action.reducer != null) {
+  if (action.reducer !== undefined && action.reducer != null) {
     return action.reducer(state, action);
   } else {
     switch (action.type) {

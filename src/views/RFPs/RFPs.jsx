@@ -13,6 +13,8 @@ import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 
+import { Store } from "../../state/store";
+
 const style = {
   typo: {
     paddingLeft: "25%",
@@ -51,10 +53,12 @@ const style = {
 };
 function RFPsPage(props) {
   const { classes } = props;
+  const { state, dispatch } = React.useContext(Store);
+  console.log(state.user);
+
   const [showSnackbar, setShowSnackbar] = useState(false);
 
   useEffect(() => {
-    document.title = `You clicked ${showSnackbar} `;
     let timer1 = setTimeout(() => setShowSnackbar(false), 5000);
     return () => {
       clearTimeout(timer1);
